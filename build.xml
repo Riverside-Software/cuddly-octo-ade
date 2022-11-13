@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project name="ADE">
+  <taskdef resource="PCT.properties" />
+  <typedef resource="types.properties" />
+
+  <mkdir dir="target/db" />
+  <PCTCreateDatabase destDir="target/db" dbName="sample" structFile="sample.st" schemaFile="sample.df" dlcHome="${DLC}" auditing="true" auditArea="area1" auditIndexArea="area2" tablePartitioning="true" cdc="true" cdcArea="area1" cdcIndexArea="area2" />
+
+  <DBConnection dbDir="target/db" dbName="sample" singleUser="true" id="std.db">
+    <Alias name="stsdb" />
+  </DBConnection>
+  <path id="std.propath">
+    <pathelement location="businesscomponents" />
+    <pathelement location="corelib" />
+    <pathelement location="netlib" />
+    <pathelement location="seclib" />
+    <pathelement location="." />
+  </path>
+
+  <PCTCompile destDir="target/build" dlcHome="${DLC}">
+    <fileset dir="businesscomponents" includes="**/*.cls" />
+    <fileset dir="corelib" includes="**/*.cls" />
+    <fileset dir="netlib" includes="**/*.cls" />
+    <fileset dir="seclib" includes="**/*.cls" />
+    <fileset dir="." includes="OpenEdge/DataAdmin/**/*.cls" />
+    <DBConnection refid="std.db" />
+    <propath refid="std.propath" />
+  </PCTCompile>
+
+  <JsonDocumentation buildDir="target/build" destFile="target/doc/business.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
+    <fileset dir="businesscomponents" includes="**/*.cls" />
+    <DBConnection refid="std.db" />
+    <propath refid="std.propath" />
+  </JsonDocumentation>
+  <JsonDocumentation buildDir="target/build" destFile="target/doc/corelib.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
+    <fileset dir="corelib" includes="**/*.cls" />
+    <DBConnection refid="std.db" />
+    <propath refid="std.propath" />
+  </JsonDocumentation>
+  <JsonDocumentation buildDir="target/build" destFile="target/doc/netlib.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
+    <fileset dir="netlib" includes="**/*.cls" />
+    <DBConnection refid="std.db" />
+    <propath refid="std.propath" />
+  </JsonDocumentation>
+  <JsonDocumentation buildDir="target/build" destFile="target/doc/seclib.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
+    <fileset dir="seclib" includes="**/*.cls" />
+    <DBConnection refid="std.db" />
+    <propath refid="std.propath" />
+  </JsonDocumentation>
+  <JsonDocumentation buildDir="target/build" destFile="target/doc/dataAdmin.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
+    <fileset dir="." includes="OpenEdge/DataAdmin/**/*.cls" />
+    <DBConnection refid="std.db" />
+    <propath refid="std.propath" />
+  </JsonDocumentation>
+
+</project>

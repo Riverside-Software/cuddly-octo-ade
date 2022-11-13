@@ -1,0 +1,4 @@
+ADD TABLE "Placeholder"
+  AREA "Schema Area"
+  DESCRIPTION "Placeholder"
+  DUMP-NAME "placeholder"
