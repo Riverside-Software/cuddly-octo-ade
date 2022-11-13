@@ -1,0 +1,8 @@
+.builder/
+build/
+db/
+*.r
+*.json
+*.pl
+*-src.zip
+*.json.gz

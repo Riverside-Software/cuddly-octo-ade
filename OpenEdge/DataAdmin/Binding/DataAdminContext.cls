@@ -279,7 +279,7 @@ class OpenEdge.DataAdmin.Binding.DataAdminContext abstract implements IDataAdmin
                 Id = string("OE" + string(TableHandle)).
             end.
             return Id.    
-        end method.    
+        end get.    
         private set. 
     
      /**  

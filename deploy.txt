@@ -1,0 +1,9 @@
+# Deploy OpenEdge Core
+mvn deploy:deploy-file -DpomFile=nexus\openedge.core.xml -Dfile=OpenEdge.Core.pl -DrepositoryId=rssw -Durl=https://nexus.rssw.eu/repository/maven-releases 
+mvn deploy:deploy-file -DgroupId=com.progress.openedge -DartifactId=core -Dversion=12.8.11 -DgeneratePom=false -Dfile=corelib-src.zip -Dclassifier=sources -DrepositoryId=rssw -Durl=https://nexus.rssw.eu/repository/maven-releases 
+mvn deploy:deploy-file -DgroupId=com.progress.openedge -DartifactId=core -Dversion=12.8.11 -DgeneratePom=false -Dfile=corelib-doc.json.gz -Dclassifier=oedoc -DrepositoryId=rssw -Durl=https://nexus.rssw.eu/repository/maven-releases 
+
+# OE Netlib
+mvn deploy:deploy-file -DpomFile=nexus\openedge.net.xml -Dfile=OpenEdge.Net.pl -DrepositoryId=rssw -Durl=https://nexus.rssw.eu/repository/maven-releases 
+mvn deploy:deploy-file -DgroupId=com.progress.openedge -DartifactId=net -Dversion=12.8.11 -DgeneratePom=false -Dfile=netlib-src.zip -Dclassifier=sources -DrepositoryId=rssw -Durl=https://nexus.rssw.eu/repository/maven-releases 
+mvn deploy:deploy-file -DgroupId=com.progress.openedge -DartifactId=net -Dversion=12.8.11 -DgeneratePom=false -Dfile=netlib-doc.json.gz -Dclassifier=oedoc -DrepositoryId=rssw -Durl=https://nexus.rssw.eu/repository/maven-releases 
