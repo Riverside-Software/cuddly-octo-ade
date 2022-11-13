@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<project name="ADE">
+  <taskdef resource="PCT.properties" />
+  <typedef resource="types.properties" />
+  <mkdir dir="db" />
+  <sports2000 destDir="db" dbName="mydb" dlcHome="${DLC}" />
+
+  <DBConnection dbDir="db" dbName="mydb" singleUser="true" id="mydb">
+    <Alias name="stsdb" />
+  </DBConnection>
+  <path id="pp">
+    <pathelement location="corelib" />
+    <pathelement location="netlib" />
+    <pathelement location="seclib" />
+  </path>
+
+  <PCTCompile destDir="build" dlcHome="${DLC}">
+    <fileset dir="corelib" includes="**/*.cls" />
+    <fileset dir="netlib" includes="**/*.cls" />
+    <fileset dir="seclib" includes="**/*.cls" />
+    <DBConnection refid="mydb" />
+    <propath refid="pp" />
+  </PCTCompile>
+  <JsonDocumentation buildDir="build" destFile="corelib.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
+    <fileset dir="corelib" includes="**/*.cls" />
+    <DBConnection refid="mydb" />
+    <propath refid="pp" />
+  </JsonDocumentation>
+  <JsonDocumentation buildDir="build" destFile="netlib.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
+    <fileset dir="netlib" includes="**/*.cls" />
+    <DBConnection refid="mydb" />
+    <propath refid="pp" />
+  </JsonDocumentation>
+  <JsonDocumentation buildDir="build" destFile="seclib.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
+    <fileset dir="seclib" includes="**/*.cls" />
+    <DBConnection refid="mydb" />
+    <propath refid="pp" />
+  </JsonDocumentation>
+
+</project>
