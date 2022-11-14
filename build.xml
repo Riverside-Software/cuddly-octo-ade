@@ -3,24 +3,27 @@
   <taskdef resource="PCT.properties" />
   <typedef resource="types.properties" />
   <mkdir dir="db" />
-  <sports2000 destDir="db" dbName="mydb" dlcHome="${DLC}" />
+  <PCTCreateDatabase destDir="db" dbName="sample" structFile="sample.st" schemaFile="sample.df" dlcHome="${DLC}" auditing="true" auditArea="area1" auditIndexArea="area2" tablePartitioning="true" cdc="true" cdcArea="area1" cdcIndexArea="area2" />
 
-  <DBConnection dbDir="db" dbName="mydb" singleUser="true" id="mydb">
+  <DBConnection dbDir="db" dbName="sample" singleUser="true" id="mydb">
     <Alias name="stsdb" />
   </DBConnection>
   <path id="pp">
     <pathelement location="corelib" />
     <pathelement location="netlib" />
     <pathelement location="seclib" />
+    <pathelement location="." />
   </path>
 
   <PCTCompile destDir="build" dlcHome="${DLC}">
     <fileset dir="corelib" includes="**/*.cls" />
     <fileset dir="netlib" includes="**/*.cls" />
     <fileset dir="seclib" includes="**/*.cls" />
+    <fileset dir="." includes="OpenEdge/DataAdmin/**/*.cls" />
     <DBConnection refid="mydb" />
     <propath refid="pp" />
   </PCTCompile>
+
   <JsonDocumentation buildDir="build" destFile="corelib.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
     <fileset dir="corelib" includes="**/*.cls" />
     <DBConnection refid="mydb" />
@@ -33,6 +36,11 @@
   </JsonDocumentation>
   <JsonDocumentation buildDir="build" destFile="seclib.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
     <fileset dir="seclib" includes="**/*.cls" />
+    <DBConnection refid="mydb" />
+    <propath refid="pp" />
+  </JsonDocumentation>
+  <JsonDocumentation buildDir="build" destFile="dataAdmin.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
+    <fileset dir="." includes="OpenEdge/DataAdmin/**/*.cls" />
     <DBConnection refid="mydb" />
     <propath refid="pp" />
   </JsonDocumentation>
