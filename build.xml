@@ -9,6 +9,7 @@
     <Alias name="stsdb" />
   </DBConnection>
   <path id="pp">
+    <pathelement location="businesscomponents" />
     <pathelement location="corelib" />
     <pathelement location="netlib" />
     <pathelement location="seclib" />
@@ -16,6 +17,7 @@
   </path>
 
   <PCTCompile destDir="build" dlcHome="${DLC}">
+    <fileset dir="businesscomponents" includes="**/*.cls" />
     <fileset dir="corelib" includes="**/*.cls" />
     <fileset dir="netlib" includes="**/*.cls" />
     <fileset dir="seclib" includes="**/*.cls" />
@@ -24,6 +26,11 @@
     <propath refid="pp" />
   </PCTCompile>
 
+  <JsonDocumentation buildDir="build" destFile="business.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
+    <fileset dir="businesscomponents" includes="**/*.cls" />
+    <DBConnection refid="mydb" />
+    <propath refid="pp" />
+  </JsonDocumentation>
   <JsonDocumentation buildDir="build" destFile="corelib.json" dlcHome="${DLC}" encoding="iso-8859-1" indent="true">
     <fileset dir="corelib" includes="**/*.cls" />
     <DBConnection refid="mydb" />
